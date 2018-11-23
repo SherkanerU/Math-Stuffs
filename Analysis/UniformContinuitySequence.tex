@@ -1,0 +1,90 @@
+\documentclass[12pt,leqno]{amsart}
+\pagestyle{plain}
+\usepackage{latexsym,amsmath,amssymb}
+%\usepackage[notref,notcite]{showkeys} 
+
+\setlength{\oddsidemargin}{1pt}
+\setlength{\evensidemargin}{1pt}
+\setlength{\marginparwidth}{30pt} % these gain 53pt width
+\setlength{\topmargin}{1pt}       % gains 26pt height
+\setlength{\headheight}{1pt}      % gains 11pt height
+\setlength{\headsep}{1pt}         % gains 24pt height
+%\setlength{\footheight}{12 pt} 	  % cannot be changed as number must fit
+\setlength{\footskip}{24pt}       % gains 6pt height
+\setlength{\textheight}{650pt}    % 528 + 26 + 11 + 24 + 6 + 55 for luck
+\setlength{\textwidth}{460pt}     % 360 + 53 + 47 for luck
+
+
+
+\def\dsp{\def\baselinestretch{1.35}\large
+\normalsize}
+%%%%This makes a double spacing. Use this with 11pt style. If you
+%%%%want to use this just insert \dsp after the \begin{document}
+%%%%The correct baselinestretch for double spacing is 1.37. However
+%%%%you can use different parameter.
+
+
+\def\U{{\mathcal U}}
+
+
+
+
+
+
+
+
+
+\begin{document}
+
+
+
+
+
+\centerline{\bf Sequence Definition of Uniform Continuity}
+
+\centerline{Connor Finucane}
+
+\bigskip
+\bigskip
+
+Let $(X,d)$ and $(Y,\varrho)$ be metric spaces and $f: X\to Y$.
+
+$\newline$
+
+{\bf Show that the following are equivalent:}
+\newline
+\newline
+{\bf (1)}
+$$\forall \epsilon >0 \ \ \exists \delta(\epsilon) >0 \ \ \forall x \in X \ \ \forall y \in X \ \ [d(x,y) < \delta] \Rightarrow [\varrho(f(x),f(y)) < \epsilon]$$
+$\newline$
+{\bf (2)}
+$$ \text{For arbitrary sequences } (x_n)_{n=1}^\infty \ \ {\rm and } \ \ (y_n)_{n=1}^\infty \,{\rm in } \, X \ \ {\rm with } \, \lim_{n\to\infty} d(x_n, y_n) = 0  $$
+$$ {\rm then} \ \ \lim_{n\to\infty} \varrho(f(x_n),f(y_n)) = 0$$
+\begin{proof}
+$\newline$
+$(\Rightarrow)$
+Fix arbitrary sequences $(x_n)$ and $(y_n)$ with $d(x_n,y_n) \to 0$. We have that:
+$$ \forall \gamma > 0  \ \ \exists N_0(\gamma) \ \ \forall n \geq N_0 \ \ d(x_n,y_n) < \gamma $$
+Let $\epsilon$ be given and show:
+$$\exists G_0(\epsilon) > 0 \ \ \forall g \geq G_0 \ \ \varrho(f(x_n), f(y_n)) < \epsilon$$
+\newline
+Pick, using notation found in {\bf (1)}, $G_0 := N_0(\delta(\epsilon))$.  I claim that this satisfies the above.  Pick $g \geq G_0$ and by the above we have that $d(x_g,y_g) < \delta(\epsilon)$ and using {\bf (1)}:  $\varrho(f(x_g),f(y_g)) < \epsilon$.
+\newline
+\newline
+The above is equivalent to:
+$$ \lim_{n\to\infty} \varrho(f(x_n), f(y_n)) = 0 $$
+\newline 
+\newline
+$(\Leftarrow)$  We will prove this implication using contraposition.  Take $\neg {\bf (1)}$:
+$$ \exists \epsilon > 0  \ \ \forall \delta > 0 \ \ \exists x(\delta) \in X \ \ \exists y(\delta) \in X \ \ d(x,y) < \delta\ \  {\rm and} \ \ \varrho(f(x), f(y))\geq \epsilon$$
+I write $x(\delta)$ and $y(\delta)$ to denote the dependance of $x$ and $y$ on the choice of arbitrary $\delta$.
+
+$\newline$
+Construct sequences $(x_n)_{n\in\mathbb{N}}$ and $(y_n)_{n\in\mathbb{N}}$ as follows using the above notation:
+$$ {\rm for \ \ every } \ \ n \in \mathbb{N} \ \ {\rm let}  \ \ \delta_n := \frac{1}{n} \ \ {\rm and} \ \ x_n := x(\delta_n),\, y_n := y(\delta_n)  $$
+We immedietly have that: $d(x_n,y_n) \to 0$.  Since for any $\epsilon$ we can find $n_0$ with $\delta_{n_0} = n_0^{-1} < \epsilon$.  And by our defintion of $(x_n)$ and $(y_n)$ we have: $d(x_{n_0},y_{n_0})< \delta_{n_0} < \epsilon$.  And since $\delta_n$ is decreasing we are done.
+
+Also by the definitons of the sequences we have that for any $n$ $\varrho(f(x_n), f(y_n)) \geq \epsilon$.  So if we pick $\frac{\epsilon}{2}$ we cannot find $n$ with $\varrho(f(x_n), f(y_n)) < \frac{\epsilon}{2}$.  Therefore: $\varrho(f(x_n), f(y_n)) \not\to 0$.  We have exhibited sequences which converge to each other but do not converge when composed with $f$.  This is $\neg{\bf (2)}$ and we are done. \end{proof}
+
+
+\end{document}
