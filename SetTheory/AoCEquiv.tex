@@ -1,0 +1,102 @@
+\documentclass[12pt,leqno]{amsart}
+\pagestyle{plain}
+\usepackage{latexsym,amsmath,amssymb,mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+%\usepackage[notref,notcite]{showkeys} 
+
+\setlength{\oddsidemargin}{1pt}
+\setlength{\evensidemargin}{1pt}
+\setlength{\marginparwidth}{30pt} % these gain 53pt width
+\setlength{\topmargin}{1pt}       % gains 26pt height
+\setlength{\headheight}{1pt}      % gains 11pt height
+\setlength{\headsep}{1pt}         % gains 24pt height
+%\setlength{\footheight}{12 pt} 	  % cannot be changed as number must fit
+\setlength{\footskip}{24pt}       % gains 6pt height
+\setlength{\textheight}{650pt}    % 528 + 26 + 11 + 24 + 6 + 55 for luck
+\setlength{\textwidth}{460pt}     % 360 + 53 + 47 for luck
+
+
+
+\def\dsp{\def\baselinestretch{1.35}\large
+\normalsize}
+%%%%This makes a double spacing. Use this with 11pt style. If you
+%%%%want to use this just insert \dsp after the \begin{document}
+%%%%The correct baselinestretch for double spacing is 1.37. However
+%%%%you can use different parameter.
+
+
+\def\U{{\mathcal U}}
+
+
+
+
+
+
+
+
+
+\begin{document}
+
+
+
+
+
+\centerline{\bf Equivalent Statements of the Axiom of Choice}
+\centerline{Connor Finucane}
+
+\bigskip 
+\noindent{The following is an exersize from Paul Halmos's Naive Set Theory:}
+$\newline \newline$
+\centerline{\bf Show that the following are equivalent to the axiom of choice:}
+\begin{equation}
+\label{One} \text{Every partially ordered set has a maximal chain}
+\end{equation}
+\begin{equation}
+\label{Two} \text{Every chain in a partially ordered set is included in some maximal chain}
+\end{equation}
+\begin{equation}
+\label{Three} \text{A partially ordered set where each chain has a supremum has a maximal element}
+\end{equation}
+\begin{proof} Assuming that Zorn's Lemma is equivalent to the Axiom of Choice, it suffices to show that:
+$$ \eqref{One} \Rightarrow \eqref{Two} \Rightarrow [\text{Zorn's Lemma}] \Rightarrow \eqref{Three} \Rightarrow \eqref{One} $$
+$\eqref{Three} \Rightarrow \eqref{One}$ $\newline$
+Let $(X,\leq)$ be an arbitrary partial ordering and let $\chi$ be all those chain in $X$:
+$$ \chi := \{ \gamma \in \mathcal{P}(X) : \gamma \text{ is a chain} \} $$
+We then define the ordering $(\chi, \subset)$ by inclusion in $\chi$.  Let $A$ be a chain in $\chi$ meaning that it is a chain ordered by inclusion of chains in $X$.  Consider $\bigcup A$.  I claim that this is a least upper bound of $A$.  To show that this is a least upper bound first note that for all $a \in A \ \  a \subset \bigcup A$.  Furthermore $\bigcup A$ is a chain since if we were to fix $x,y \in \bigcup A$ then there would be $A_x$ and $A_y \in A$ for which $x \in A_x$ and $y \in A_y$.  Without loss of generality we can assume that $A_x \subset A_y$ it follows that $x,y \in A_y$ and since in particular $A_y$ is a chain we have that $x \leq y$ or $y \leq x$ and these are the desired inequalities.  It has now been shown that $\bigcup A$ is a chain that includes every element of $A$, therefore it is an upper bound and it remains to be shown that it is a least upper bound.  \newline \newline
+\indent To show this, assume towards a contradiction that $\bigcup A$ is not a least upper bound.  That implies that there exists some $B \in \chi$ such that $B$ is a proper subset of $\bigcup A$ and $B$ is an upper bound of $A$.  Clearly we have that $B \subset \bigcup A$.  In addition to this if we fix an arbitray $\gamma \in \bigcup A$ there must exist some $A_\gamma \in A$ for which $\gamma \in A_\gamma$.  By the definition of $B$ we habe that $A_\gamma \in B$ so then $\gamma \in B$.  This yields that $\bigcup A \subset B$ which then allows us to conclude that $\bigcup A = B$ which is a contradiction with $B$ being a proper subset of $A$.
+\newline \newline
+\indent Since an arbitrary chain $A$ in $\chi$ has a least upper bound (namely $\bigcup A$) we can apply \eqref{Three} to conclude that there must be some maximal element in $\chi$ meaning that $X$ has a maximal chain.  This is exactly the statement of \eqref{One} and we are done.
+\newline \newline
+$\eqref{One} \Rightarrow \eqref{Two}$
+$\newline$
+Again letting $(X, \leq)$ be a partial ordering, let $(\chi, \subset)$ be the collection of chains in $X$ ordered by inclusion.  Fixing an arbitrary $A \in \chi$ define $C_A$ to be all those chains in $\chi$ which include $A$:
+$$ C_A := \{ \gamma \in \chi : A \subset \gamma \} $$
+$C_A$ is non empty since it contains $A$ itself.  Furthermore, $C_A$ inherits the ordering from $\chi$.  Therefore we can apply \eqref{One} to conclude tha there exists some maximal chain $\Lambda$ in $C_A$.  Note that $\Lambda$ is a subest of $C_A$ and is a chain with respect to the inclusion ordering on $C_A$.  As previously shown $\bigcup \Lambda$ is itself a chain included in $\chi$ because it is a union of chains.  I assert that $\bigcup \Lambda$ is a maximal chain.
+\newline
+\newline
+\indent Assume to get a contradiction that $\bigcup \Lambda$ is not a maximal chain.  By this assumption there exists some $B$ such that $\bigcup \Lambda$ is a proper subset of $B$.  $A$ is a subset of $\bigcup \Lambda$ since it is the union of chains which include $A$, therefore $A \subset B$.  It follows that $B \in C_A$.  Furthermore, since $\bigcup \Lambda$ is a proper subset of $B$ we have that $B \not\in \Lambda$.  This is true because by definition of the proper subset, there must be some $b \in B$ such that $b \not\in \bigcup \Lambda$.  If $B$ were to be in $\Lambda$ then $b$ would necessarily be an element of $\bigcup \Lambda$.  Using this we can form $\Lambda\cup \{ B \}$ this is a chain since every element of $\Lambda$ is a subset of $\bigcup \Lambda$ and by transitivity is a subset of $B$.  This construction contradicts the maximality of $\Lambda$ since $\Lambda$ is a proper subset of $\Lambda\cup \{ B \}$.
+\newline
+\newline
+\indent We have constructed a maximal chain which includes $A$ which is what is required by $\eqref{Two}$.  
+\newline
+\newline
+\eqref{Two} $\Rightarrow$ [Zorn's Lemma] \newline
+Let $(X, \leq)$ be a partial ordering where every chain in $X$ has a maximal element.  We need to show that there exists a maximal element in $X$.  Therefore, fix some arbitrary chain $A$ in $X$.  In this case, \eqref{Two} applies and we see that $A$ is included in some maximal chain $\Xi$.  Since $\Xi$ is a chain in $X$ our assumption applies and it has a maximal element $m$.  This element is a maximal element of $m$.
+\newline
+\newline
+\indent If $m$ was not a maximal element of $X$ then there must exist some $m'$ such that $m \leq m'$ and $m \not= m'$.  Since for every $\gamma \in \Xi $ we have that $\gamma \leq m$ and $m \leq m'$ we can conclude that $\gamma \leq m'$.  Therefore the set $\Xi \cup \{m'\}$ is a chain.  Since $m' \not\in \Xi$ we have $\Xi$ as a proper subset of $\Xi \cup \{m'\}$ which contradicts the maximality of $\Xi$.
+\newline
+\newline
+\indent It follows that $m$ is maximal and this section of the proof is complete.
+\newline
+\newline
+[Zorn's Lemma] $\Rightarrow$ \eqref{Three}
+\newline
+Let $(X, \leq)$ be a partial ordering where every chain in $X$ has a least upper bound.  If each chain has a least upper bound then it has an upper bound.  Zorn's Lemma applies and $X$ has a maximal element and we are done.
+
+\end{proof}
+
+
+
+
+\end{document}
