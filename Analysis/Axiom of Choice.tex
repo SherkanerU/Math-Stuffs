@@ -1,0 +1,67 @@
+\documentclass[12pt,leqno]{amsart}
+\pagestyle{plain}
+\usepackage{latexsym,amsmath,amssymb}
+%\usepackage[notref,notcite]{showkeys} 
+
+\setlength{\oddsidemargin}{1pt}
+\setlength{\evensidemargin}{1pt}
+\setlength{\marginparwidth}{30pt} % these gain 53pt width
+\setlength{\topmargin}{1pt}       % gains 26pt height
+\setlength{\headheight}{1pt}      % gains 11pt height
+\setlength{\headsep}{1pt}         % gains 24pt height
+%\setlength{\footheight}{12 pt} 	  % cannot be changed as number must fit
+\setlength{\footskip}{24pt}       % gains 6pt height
+\setlength{\textheight}{650pt}    % 528 + 26 + 11 + 24 + 6 + 55 for luck
+\setlength{\textwidth}{460pt}     % 360 + 53 + 47 for luck
+
+
+
+\def\dsp{\def\baselinestretch{1.35}\large
+\normalsize}
+%%%%This makes a double spacing. Use this with 11pt style. If you
+%%%%want to use this just insert \dsp after the \begin{document}
+%%%%The correct baselinestretch for double spacing is 1.37. However
+%%%%you can use different parameter.
+
+
+\def\U{{\mathcal U}}
+
+
+
+
+
+
+
+
+
+\begin{document}
+
+
+
+
+
+\centerline{\bf Axiom of Choice in Analysis}
+
+\centerline{Connor Finucane}
+
+\bigskip
+\bigskip
+
+\noindent {\bf Exersize 1:} A compact set $E$ has a countable and dense subset
+\begin{proof}
+Since $E$ is compact it is totally bounded, meaning that for all $\epsilon$ there is $\{x_1, x_2, \dots, x_n\}$ such that $E \subset \bigcup_{i=1}^n B(x_i, \epsilon)$.  Let $\epsilon_n := \frac{1}{n}$ and denote the set given by the bounding of $\epsilon_n$ as $T_n$.  For every $n$, $T_n$ is finite.  We can form the union $T := \bigcup_{n=1}^\infty T_n$ which is countable.  Fixing some arbitrary $x \in E$ and $\delta > 0$ we can find $j$ such that $\frac{1}{j} < \delta \Rightarrow T_j \subset T$.  Therefore there exists some $x_i$ in $T_j$ for which $d(x_i, x) < \frac{1}{j} < \delta$.  This implies that $T$ is dense in $E$.    
+\end{proof}
+
+\noindent {\bf Exersize 2:} For $D:= \{x_1, x_2, x_3, \dots \}$, dense in some compact set $E$ then for every $x \in E$ and $\delta > 0$ there exists $i$ and $k$ with $i \leq k$ such that $d(x_i, x) <\delta$
+\begin{proof}
+Since $E$ is compact it is totally bounded.  Let $T = {z_1, z_2, \dots, z_j}$ be the collection of points given by bounding $E$ by $\delta /2$.  Define the function:
+ $$ g: T \to \mathcal{P}(E) \setminus \{\emptyset\} \ \ f(z_i) \mapsto \{\gamma \in D : d(\gamma, z_i) <\delta/2 \}$$
+For all $z_i$, $g(z_i)$ is nonempty since $D$ is dense in $E$.  Let $f : \mathcal{P}(E)\setminus \{ \emptyset \} \to E$ be a choice function on $E$ (guarunteed by the axiom of choice).  We can then form the composition: 
+$$f\circ g: T \to D$$
+which selects exactly one element from each $g(z_i)$.  $R := {\rm Range} (f\circ g) \subset D$ is finite.  Fixing some arbitrary $x \in E$ there must be some $z_j \in T$ such that $d(x_j, x) < \delta/2$ there must also be some $x_\ell \in R$ with $d(x_\ell, z_i) < \delta/2$.  Therefore we can calculate:
+ $$d(x, x_\ell) \leq d(x_\ell, z_j) + d(x, z_j) < \delta$$
+
+\end{proof}
+
+
+\end{document}
